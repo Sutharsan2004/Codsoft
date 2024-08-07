@@ -37,12 +37,13 @@ def get_response(user_input):
 def send():
     user_input = user_entry.get()
     if user_input.strip():
+        chat_log.insert(tk.END, "ChatBee: This chatbot helps to chat about Mental health and College Admissions... Kidnly Ask queries regarding to that. Thank You!")
         chat_log.config(state=tk.NORMAL)
         chat_log.insert(tk.END, "You: " + user_input + "\n", "user")
-        chat_log.yview(tk.END)  # Scroll to the end of the chat log
+        chat_log.yview(tk.END) 
         response = get_response(user_input)
         chat_log.insert(tk.END, "ChatBee: " + response + "\n", "ChatBee")
-        chat_log.yview(tk.END)  # Scroll to the end of the chat log
+        chat_log.yview(tk.END)  
         chat_log.config(state=tk.DISABLED)
         user_entry.delete(0, tk.END)
 
@@ -51,27 +52,27 @@ def on_closing():
     if messagebox.askokcancel("Quit", "Do you want to quit??? If not click Cancel"):
         root.destroy()
 
-# Set up the main application window
+# Main application window
 root = tk.Tk()
 root.title("ChatBee")
 root.geometry("400x500")
 root.resizable(True, True)
 root.configure(bg="#F0F0F0")
 
-# Create a scrollable text widget for the chat log
+# Scrollable text widget for the chat log
 chat_log = scrolledtext.ScrolledText(root, state=tk.DISABLED, wrap=tk.WORD, font=("Arial", 12), bg="#FFFFFF", fg="#000000")
 chat_log.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
 
-# Apply custom tags to the chat log for styling
+# Applying custom tags to the chat log for styling
 chat_log.tag_config("user", foreground="blue", font=("Arial", 12, "bold"))
 chat_log.tag_config("bot", foreground="green", font=("Arial", 12, "italic"))
 
-# Create an entry widget for the user input
+# Entry widget for the user input
 user_entry = tk.Entry(root, font=("Arial", 12), bg="#FFFFFF", fg="#000000")
 user_entry.pack(padx=10, pady=10, fill=tk.X)
 user_entry.focus()
 
-# Create a send button
+# Creating a send button
 send_button = tk.Button(root, text="Send", command=send, font=("Arial", 12), bg="#4CAF50", fg="#FFFFFF", activebackground="#45a049")
 send_button.pack(padx=10, pady=10)
 
